@@ -4,29 +4,19 @@ import Button from "@ui/Button.astro";
 const title = "Integrated Environmental & Safety Solutions";
 const subTitle =
   "Expert guidance and practical solutions for environmental compliance, safety management, and risk mitigation across multiple industries. Make your projects compliant, safe, and sustainable.";
-const secondaryCTA = { text: "Our Services", href: "/services" };
-const primaryCTA = { text: "Contact Us", href: "/contact" };
 ---
 
 {/* Hero Content */}
 <div class="mx-auto max-w-4xl select-none text-left sm:text-center">
   <h1
-    class="block text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
+    class="block text-balance text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl"
   >
     {title}
   </h1>
 </div>
 
 <div class="mx-auto max-w-3xl text-left sm:text-center">
-  <p class="text-pretty text-lg text-slate-700">
+  <p class="text-pretty text-lg text-white/90">
     {subTitle}
   </p>
-</div>
-
-{/* CTA Buttons */}
-<div class="flex flex-col justify-center gap-5 sm:flex-row">
-  <Button href={secondaryCTA.href} variant="secondary" target="_blank"
-    >{secondaryCTA.text}</Button
-  >
-  <Button href={primaryCTA.href} variant="primary">{primaryCTA.text}</Button>
 </div>

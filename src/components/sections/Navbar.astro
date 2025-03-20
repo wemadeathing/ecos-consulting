@@ -1,248 +1,210 @@
 ---
 import Services from "@megaMenu/Services.astro";
 import CaseStudies from "@megaMenu/CaseStudies.astro";
+import Button from "@ui/Button.astro";
 import { navigationLinks } from "@utils/navigation";
+import { Image } from "astro:assets";
+import logoLight from "../../assets/images/ecos-logo-light.png";
+import logoDark from "../../assets/images/ecos-logo-dark.png";
 
 const currentPath = Astro.url.pathname;
 
-// Update the primary button to be a Contact button
+// Call-to-action configuration for the primary button
 const primaryCTA = { text: "Contact", href: "/contact" };
 ---
 
-<header id="main-header" class="sticky top-0 z-50 w-full bg-white shadow-sm transition-all duration-300">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-20 items-center justify-between">
-      {/* Logo */}
-      <a
-        class="dm-sans flex-none text-2xl font-light text-slate-400 focus:opacity-80 focus:outline-hidden"
-        href="/"
-        aria-label="ECOS Consulting"
-        translate="no"
-      >
-        <span class="font-semibold text-teal-700">Ecos</span>Consulting
-      </a>
-
-      {/* Mobile menu button */}
-      <div class="flex md:hidden">
-        <button
-          type="button"
-          class="hs-collapse-toggle inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 focus:outline-none"
-          id="hs-header-base-collapse"
-          aria-expanded="false"
-          aria-controls="hs-header-base"
-          aria-label="Toggle navigation"
-          data-hs-collapse="#hs-header-base"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg
-            class="size-6 hs-collapse-open:hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg
-            class="hidden size-6 hs-collapse-open:block"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Desktop menu and contact button */}
-      <div class="hidden md:flex md:items-center md:space-x-8">
-        <a
-          href="/"
-          class={`text-sm font-medium ${
-            currentPath === "/" ? "underline underline-offset-4 text-slate-800" : "text-slate-800 hover:text-teal-700"
-          }`}
-          aria-current={currentPath === "/" ? "page" : undefined}
-        >
-          Home
-        </a>
-        <Services />
-        <CaseStudies />
-        <a
-          href="/about"
-          class={`text-sm font-medium ${
-            currentPath === "/about" ? "underline underline-offset-4 text-slate-800" : "text-slate-800 hover:text-teal-700"
-          }`}
-          aria-current={currentPath === "/about" ? "page" : undefined}
-        >
-          About
-        </a>
-        
-        <a
-          href={primaryCTA.href}
-          class="rounded-md bg-teal-800 px-6 py-2.5 text-center text-sm font-medium text-white transition-colors duration-300 hover:bg-teal-800/80 focus:bg-teal-800/80 focus:outline-hidden ml-4"
-        >
-          {primaryCTA.text}
-        </a>
-      </div>
-    </div>
-  </div>
-
-  {/* Mobile menu */}
-  <div
-    id="hs-header-base"
-    class="hs-collapse fixed inset-0 z-[60] hidden w-full overflow-y-auto bg-white p-8 transition-all duration-300 md:hidden"
-    aria-labelledby="hs-header-base-collapse"
+<header
+  id="main-header"
+  class="fixed start-1/2 top-[30px] z-50 mx-auto flex w-[calc(100%-40px)] max-w-[calc(100%-40px)] -translate-x-1/2 transform flex-wrap rounded-2xl border-b border-transparent p-2 bg-transparent transition-all duration-300 sm:max-w-xl md:max-w-4xl md:flex-nowrap md:justify-start lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[81rem]"
+>
+  <nav
+    class="relative mx-auto w-full px-4 py-1 sm:px-6 lg:px-8 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:gap-2 2xl:max-w-[85rem]"
   >
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between gap-x-1">
       <a
-        class="dm-sans flex-none text-2xl font-light text-slate-400 focus:opacity-80 focus:outline-hidden"
+        class="flex-none focus:opacity-80 focus:outline-hidden"
         href="/"
         aria-label="ECOS Consulting"
-        translate="no"
       >
-        <span class="font-semibold text-teal-700">Ecos</span>Consulting
+        <Image 
+          id="logo-light"
+          src={logoLight}
+          alt="ECOS Consulting Logo" 
+          width={170} 
+          height={60} 
+          class="w-auto h-11 block"
+        />
+        <Image 
+          id="logo-dark"
+          src={logoDark}
+          alt="ECOS Consulting Logo" 
+          width={170} 
+          height={60} 
+          class="w-auto h-11 hidden"
+        />
       </a>
-      
+
       <button
         type="button"
-        class="hs-collapse-toggle inline-flex h-12 w-12 items-center justify-center rounded-lg text-slate-800 hover:bg-slate-100 focus:outline-none"
-        data-hs-collapse="#hs-header-base"
+        class="hs-collapse-toggle relative flex size-9 items-center justify-center rounded-lg border border-slate-200/30 text-[12px] font-medium text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden lg:hidden"
+        id="hs-header-base-collapse"
+        aria-expanded="false"
         aria-controls="hs-header-base"
-        aria-label="Close menu"
+        aria-label="Toggle navigation"
+        data-hs-collapse="#hs-header-base"
       >
-        <span class="sr-only">Close menu</span>
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <svg
+          class="size-4 hs-collapse-open:hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><line x1="3" x2="21" y1="6" y2="6"></line><line
+            x1="3"
+            x2="21"
+            y1="12"
+            y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg
+        >
+        <svg
+          class="hidden size-4 shrink-0 hs-collapse-open:block"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+        >
+        <span class="sr-only">Toggle navigation</span>
       </button>
     </div>
-    
-    <nav class="mt-8 space-y-4">
-      <a 
-        href="/" 
-        class={`block py-3 text-xl font-medium ${currentPath === "/" ? "underline underline-offset-4" : ""}`}
+
+    <div
+      id="hs-header-base"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 lg:ml-12 lg:block 2xl:ml-20"
+      aria-labelledby="hs-header-base-collapse"
+    >
+      <div
+        class="max-h-[75vh] overflow-hidden overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar]:w-2"
       >
-        Home
-      </a>
-      
-      <div>
-        <button
-          type="button"
-          class="flex w-full items-center justify-between rounded-lg bg-slate-50 px-4 py-3 text-xl font-medium text-slate-800"
-          aria-expanded="true"
+        <div
+          class="flex flex-col gap-0.5 py-2 lg:flex-row lg:items-center lg:gap-2 lg:py-0"
         >
-          Services
-          <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6"/>
-          </svg>
-        </button>
+          <div class="grow">
+            <div
+              class="flex flex-col gap-0.5 lg:flex-row lg:items-center lg:justify-center lg:gap-3"
+            >
+              <a
+                href="/"
+                class="nav-link flex items-center rounded-lg p-2 font-medium hover:bg-white/10 focus:bg-white/10 focus:outline-hidden text-white"
+                aria-current={currentPath === "/" ? "page" : undefined}
+              >
+                Home
+              </a>
         
-        <div class="px-4 pt-4">
-          <p class="mb-3 text-slate-600">Explore our range of services tailored to your needs</p>
-          <hr class="mb-4 border-slate-200" />
-          
-          <div class="space-y-2">
-            <p class="text-base font-medium text-slate-800">Services</p>
-            
-            <a href="/services/she-management" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="m4.5 12.75 6 6 9-13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">SHE Management</span>
-            </a>
-            
-            <a href="/services/facilities-management" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">Facilities Management</span>
-            </a>
-            
-            <a href="/services/tech-plant-safety" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">Tech Plant Safety</span>
-            </a>
-            
-            <a href="/services/construction-safety" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="m6.115 5.19.319 1.913A6 6 0 0 0 8.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 0 0 2.288-4.042 1.087 1.087 0 0 0-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 0 1-.98-.314l-.295-.295a1.125 1.125 0 0 1 0-1.591l.13-.132a1.125 1.125 0 0 1 1.3-.21l.603.302a.809.809 0 0 0 1.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 0 0 1.528-1.732l.146-.292M6.115 5.19A9 9 0 1 0 17.18 4.64M6.115 5.19A8.965 8.965 0 0 1 12 3c1.929 0 3.716.607 5.18 1.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">Construction Safety</span>
-            </a>
+              <Services />
+        
+              <CaseStudies />
+        
+              <a
+                href="/about"
+                class="nav-link flex items-center rounded-lg p-2 font-medium hover:bg-white/10 focus:bg-white/10 focus:outline-hidden text-white"
+                aria-current={currentPath === "/about" ? "page" : undefined}
+              >
+                About
+              </a>
+            </div>
           </div>
-          
-          <div class="mt-8 space-y-2">
-            <p class="text-base font-medium text-slate-800">Additional Services</p>
-            
-            <a href="/services/environmental" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">Environmental Services</span>
-            </a>
-            
-            <a href="/services/safety" class="flex items-center gap-3 py-3">
-              <svg class="text-teal-600 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="m4.5 12.75 6 6 9-13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <span class="text-lg font-medium">Safety Services</span>
-            </a>
+    
+          <div
+            class="mt-5 flex flex-wrap items-center gap-x-1.5 lg:ml-6 lg:mt-0"
+          >
+            <Button
+              href={primaryCTA.href}
+              variant="primary"
+              className="inline-flex text-nowrap border-none py-2! bg-teal-700 hover:bg-teal-700/80"
+              >{primaryCTA.text}</Button
+            >
           </div>
         </div>
       </div>
-      
-      <a 
-        href="/case-studies" 
-        class={`block py-3 text-xl font-medium ${currentPath.startsWith("/case-studies") ? "underline underline-offset-4" : ""}`}
-      >
-        Case Studies
-      </a>
-      
-      <a 
-        href="/about" 
-        class={`block py-3 text-xl font-medium ${currentPath === "/about" ? "underline underline-offset-4" : ""}`}
-      >
-        About
-      </a>
-      
-      <a
-        href={primaryCTA.href}
-        class="mt-4 block rounded-md bg-teal-800 px-4 py-3 text-center text-xl font-medium text-white hover:bg-teal-800/80"
-      >
-        {primaryCTA.text}
-      </a>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <script>
-  // Scroll effect for the header
   document.addEventListener("astro:page-load", () => {
-    const header = document.getElementById("main-header");
+    // Initialize Preline components
+    const preline = import("preline/preline.js").then(module => {
+      module.HSStaticMethods.autoInit();
+    });
     
-    if (header) {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          header.classList.add("bg-white/80", "backdrop-blur-md");
-          header.classList.remove("bg-white");
-        } else {
-          header.classList.remove("bg-white/80", "backdrop-blur-md");
-          header.classList.add("bg-white");
-        }
-      });
-    }
-  });
-
-  // Initialize Preline
-  document.addEventListener("astro:page-load", async () => {
-    const preline = await import("preline/preline.js");
-    preline.HSStaticMethods.autoInit();
+    // Handle scroll behavior for the header
+    const header = document.getElementById('main-header');
+    const logoLight = document.getElementById('logo-light');
+    const logoDark = document.getElementById('logo-dark');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    const handleScroll = () => {
+      // Check if header element exists
+      if (!header || !logoLight || !logoDark) return;
+      
+      if (window.scrollY > 50) {
+        // When scrolled, add the blurred background and switch to dark theme
+        header.classList.add('bg-white/70', 'backdrop-blur-md', 'shadow-md');
+        header.classList.remove('bg-transparent', 'border-transparent');
+        header.classList.add('border-slate-100');
+        
+        // Switch to dark logo
+        logoLight.classList.add('hidden');
+        logoLight.classList.remove('block');
+        logoDark.classList.add('block');
+        logoDark.classList.remove('hidden');
+        
+        // Change navigation text colors to dark
+        navLinks.forEach(link => {
+          link.classList.remove('text-white', 'hover:bg-white/10', 'focus:bg-white/10');
+          link.classList.add('text-slate-800', 'hover:bg-slate-100/70', 'focus:bg-slate-100/70');
+        });
+      } else {
+        // When at the top, return to transparent and light theme
+        header.classList.remove('bg-white/70', 'backdrop-blur-md', 'shadow-md', 'border-slate-100');
+        header.classList.add('bg-transparent', 'border-transparent');
+        
+        // Switch to light logo
+        logoLight.classList.remove('hidden');
+        logoLight.classList.add('block');
+        logoDark.classList.remove('block');
+        logoDark.classList.add('hidden');
+        
+        // Change navigation text colors to light
+        navLinks.forEach(link => {
+          link.classList.add('text-white', 'hover:bg-white/10', 'focus:bg-white/10');
+          link.classList.remove('text-slate-800', 'hover:bg-slate-100/70', 'focus:bg-slate-100/70');
+        });
+      }
+    };
+    
+    // Run once on load to set initial state
+    handleScroll();
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
   });
 </script>
+
+<style>
+  /* Add explicit support for backdrop-filter */
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+</style>

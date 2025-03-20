@@ -2,17 +2,47 @@
 import AnnouncementBanner from "@common/AnnouncementBanner.astro";
 import HeroContent from "@common/HeroContent.astro";
 import HeroVideo from "@common/HeroVideo.astro";
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/ecos-hero.jpg";
 ---
 
-<section class="bg-linear-to-b/oklch from-teal-200 via-transparent to-white">
-  <div class="mx-auto max-w-[85rem] space-y-8 px-4 pb-12 pt-32 sm:px-6 lg:px-8">
-    {/* Announcement Banner */}
-    <AnnouncementBanner />
+<section class="relative h-screen overflow-hidden">
+  <!-- Border Layout with Rounded Corners -->
+  <div class="absolute inset-0 m-4 z-10 overflow-hidden rounded-3xl">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={heroImage}
+        alt="ECOS Consulting Hero"
+        width={1920}
+        height={1080}
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+  </div>
+  
+  <!-- Border Layout - Now outside the rounded container with reduced thickness -->
+  <div class="absolute inset-x-0 bottom-0 z-5 h-[15px] bg-white"></div>
+  <div class="absolute inset-y-0 left-0 z-5 w-[15px] bg-white"></div>
+  <div class="absolute inset-y-0 right-0 z-5 w-[15px] bg-white"></div>
+  <div class="absolute inset-x-0 top-0 z-5 h-[15px] bg-white"></div>
+  
+  <!-- Content -->
+  <div class="relative z-20 mx-auto flex h-full max-w-[85rem] flex-col justify-center space-y-8 px-8 pb-20 pt-24 sm:px-10 lg:px-12">
+    
 
     {/* Hero Content */}
     <HeroContent />
-
-    {/* Hero Visual */}
-    <HeroVideo />
+  </div>
+  
+  <!-- Interactive Scroll Indicator -->
+  <div class="absolute bottom-12 left-1/2 z-20 -translate-x-1/2 transform text-center text-white">
+    <div class="flex flex-col items-center">
+      <span class="mb-2 text-sm font-light">Scroll to explore</span>
+      <div class="h-14 w-8 rounded-full border-2 border-white p-1">
+        <div class="animate-bounce h-2 w-2 rounded-full bg-white mx-auto mt-1"></div>
+      </div>
+    </div>
   </div>
 </section>

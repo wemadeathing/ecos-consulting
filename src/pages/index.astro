@@ -2,18 +2,71 @@
 import BaseLayout from "@layout/BaseLayout.astro";
 import Hero from "@sections/HeroSection.astro";
 import FeatureShowcase from "@sections/FeatureShowcase.astro";
-// import FeatureBento from "@sections/FeatureBento.astro";
+import FeatureBento from "@sections/FeatureBento.astro";
 import FeatureAnimated from "@sections/FeatureAnimated.astro";
 import FeatureGrid from "@sections/FeatureGrid.astro";
 import CTA from "@sections/CTA.astro";
+
+// Content for the section title and subtitle
+const title = `<span class="text-teal-700">ECOS</span><span class="font-normal text-slate-400"> Consulting</span>'s Expertise`;
+const subTitle = `Our multidisciplinary consultancy provides an integrated approach to safety and environmental compliance, helping clients meet regulatory requirements while enhancing productivity.`;
+
+// Features
+const features = [
+  {
+    title: "Environmental Services",
+    description:
+      "Comprehensive environmental assessments, due diligence audits, and practical management solutions",
+    className: "rounded-xl lg:rounded-l-xl lg:rounded-r-none",
+  },
+  {
+    title: "Health & Safety Management",
+    description:
+      "Integrated safety solutions including risk assessments, management plans, and on-site monitoring that protect personnel while maintaining productivity.",
+    className: "rounded-xl lg:rounded-none",
+  },
+  {
+    title: "Technical Plant Safety",
+    description:
+      "Comprehensive compliance assessments to ensure adherence to legal and regulatory requirements for technical plants and equipment.",
+    className: "rounded-xl lg:rounded-r-xl lg:rounded-l-none",
+  },
+];
 ---
 
 <BaseLayout>
   <Hero />
 
-  <FeatureShowcase />
 
-  {/* <FeatureBento /> */}
+  {/* Additional Features Section */}
+  <section class="py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* Added title and subtitle here */}
+      <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+        <h2 class="text-balance text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight">
+          <Fragment set:html={title} />
+        </h2>
+        <p class="mt-1 text-pretty text-slate-600">
+          <Fragment set:html={subTitle} />
+        </p>
+      </div>
+
+      <dl class="grid grid-cols-1 gap-x-3 gap-y-16 text-center lg:grid-cols-3">
+        {
+          features.map(({ title, description, className }) => (
+            <div class={`flex flex-col gap-y-4 bg-teal-100 p-10 ${className}`}>
+              <dt class="text-base/7 text-slate-600">{description}</dt>
+              <dd class="order-first text-3xl font-medium tracking-tight text-slate-900">
+                <h4>{title}</h4>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <FeatureBento />
 
   <FeatureAnimated />
 

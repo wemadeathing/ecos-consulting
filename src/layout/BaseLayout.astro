@@ -24,15 +24,15 @@ const defaultSchema: WithContext<Thing> = {
   inLanguage: "en-US",
   "@id": Astro.url.href,
   url: Astro.url.href,
-  name: "DataNova",
+  name: "ECOS Consulting",
   description:
-    "Unlock powerful data insights with DataNova's advanced analytics suite for Excel. Visualize, analyze, and make data-driven decisions in minutes with seamless Excel integration, AI-powered analysis, and predictive forecasting models.",
+    "Your go-to multidisciplinary consultancy for safety and environmental compliance. Together, let's build a sustainable world.",
   isPartOf: {
     "@type": "WebSite",
     url: `${Astro.site}`,
-    name: "DataNova",
+    name: "ECOS Consulting",
     description:
-      "DataNova Analytics Inc. provides advanced analytics for Excel to help businesses unlock actionable insights quickly with no coding required.",
+      "ECOS Consulting (Pty) Ltd is a multidisciplinary consultancy providing an integrated approach to safety and environmental compliance within work environments.",
   },
 };
 ---
@@ -42,27 +42,27 @@ const defaultSchema: WithContext<Thing> = {
     {/* SEO Meta Tags */}
     <SEO
       charset="utf-8"
-      title={seo?.title ?? "DataNova"}
+      title={seo?.title ?? "ECOS Consulting | Safety, Health & Environment"}
       description={seo?.description ??
-        "Unlock powerful data insights with DataNova's advanced analytics suite for Excel. Visualize, analyze, and make data-driven decisions in minutes with seamless Excel integration, AI-powered analysis, and predictive forecasting models."}
+        "Your go-to multidisciplinary consultancy for safety and environmental compliance. Together, let's build a sustainable world."}
       openGraph={{
         basic: {
-          title: "DataNova - Unlock Insights from Your Excel Data",
+          title: "ECOS Consulting | Empowering Excellence in Safety, Health, Environment",
           type: "website",
           image: socialImage,
         },
         optional: {
           description:
-            "Transform your Excel workspace with DataNova's powerful analytics suite. Get insights, predictive models, and visualizations in minutes with no coding required.",
+            "ECOS Consulting provides integrated safety and environmental compliance solutions for construction, real estate, and technical plant environments.",
         },
       }}
       twitter={{
         card: "summary_large_image",
-        title: "DataNova - Unlock Insights from Your Excel Data",
+        title: "ECOS Consulting | Safety, Health & Environment",
         description:
-          "Transform your Excel workspace with DataNova's powerful analytics suite. Visualize and analyze data quickly with no coding required.",
+          "Your go-to multidisciplinary consultancy for safety and environmental compliance. Together, let's build a sustainable world.",
         image: socialImage,
-        imageAlt: "DataNova Logo.",
+        imageAlt: "ECOS Consulting Logo.",
       }}
       extend={{
         link: [

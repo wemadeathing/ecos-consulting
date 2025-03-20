@@ -4,51 +4,53 @@ import type { WithContext, Thing } from "schema-dts";
 
 // Data describing the "About" section content
 const aboutData = {
-  title: "DataNova,",
-  description:
-    "founded in 2018, is a leading provider of powerful analytics tools that transform your Excel workspace into a comprehensive analytics powerhouse, making data analysis accessible and actionable for businesses worldwide.",
+  title: "ECOS Consulting",
+  tagline: "Safety, health, environment and quality",
+  description: "ECOS Consulting (Pty) Ltd is a multidisciplinary consultancy providing an integrated approach to safety and environmental compliance within work environments. We assist clients with the integration of safety, health and environment in the construction industry, real estate properties, technical plant and general working environments. Our clients are provided with a value-added service that drives productivity and offers practical solutions.",
+  founding: "Founded in 2019 and is a BBBEE Level One Contributor with 100% black woman owned.",
+  mission: "Our mission is to prioritize the well-being of people and the environment, ensuring the safety of personnel and protecting nature while helping clients achieve their critical objectives. By partnering with ECOS Consulting, you can rest assured of complete transparency, compliance, and sustainable practices for a better tomorrow.",
+  cta: "Join us in advancing sustainable development and making a positive impact on the world.",
   statistics: [
     {
-      label: "Industry Sectors Served",
-      value: "15+",
+      label: "BBBEE Level",
+      value: "1",
     },
     {
-      label: "Data Points Processed",
-      value: "Billions",
+      label: "Black Woman Owned",
+      value: "100%",
     },
     {
-      label: "Custom Reports Generated",
-      value: "500,000+",
+      label: "Founded",
+      value: "2019",
     },
   ],
 };
 
-// Data describing the expertise section
-const expertiseData = {
-  title: "Our Expertise:",
-  expertise: [
-    {
-      title: "AI-Powered Insights:",
-      description:
-        "Uncover deep insights and predict trends with advanced AI algorithms for proactive decision-making.",
-    },
-    {
-      title: "Real-Time Data Visualization:",
-      description:
-        "Transform data into interactive visuals, tracking key metrics in real-time for actionable insights.",
-    },
-    {
-      title: "Predictive Analytics Engine:",
-      description:
-        "Leverage machine learning to forecast trends and identify opportunities, staying ahead of the curve.",
-    },
-  ],
+// Data describing the vision and mission section
+const valuesData = {
+  title: "Company values",
+  subtitle: "Our core values.",
+  vision: {
+    title: "Vision",
+    points: [
+      "To be a leader in providing sustainable health, safety and environmental solutions within various industries.",
+      "To add value to our clients business through working with them to solve their critical challenges.",
+      "To ensure complete transparency that eliminates the risk of legal non-compliance therefore preventing loss of life, environmental incidents, revenue loss and reputational damage."
+    ]
+  },
+  mission: {
+    title: "Mission",
+    points: [
+      "To put people and the environment first in ensuring the health and safety of personnel and the protection of the environment.",
+      "ECOS Consulting is committed to putting its Clients first and to promote long–term relationships within the Private and Public sectors."
+    ]
+  }
 };
 
 // SEO metadata for the page
 const seo = {
-  title: "About DataNova",
-  description: "Learn more about DataNova, the analytics platform that transforms your Excel data with advanced insights and predictive models.",
+  title: "About ECOS | Environmental & Safety Consultants",
+  description: "ECOS Consulting is a 100% black woman owned, BBBEE Level One multidisciplinary consultancy providing integrated safety and environmental compliance solutions since 2019.",
 };
 
 // Schema.org metadata for SEO
@@ -58,13 +60,13 @@ const schema: WithContext<Thing> = {
   "inLanguage": "en-US",
   "@id": Astro.url.href,
   "url": Astro.url.href,
-  "name": "About DataNova",
-  "description": "Get to know DataNova, the powerful analytics platform for Excel that enables businesses to make data-driven decisions quickly with no coding required.",
+  "name": "About ECOS",
+  "description": "ECOS Consulting provides integrated safety and environmental compliance solutions for construction, real estate, and technical plant environments.",
   "isPartOf": {
     "@type": "WebSite",
     "url": `${Astro.site}`,
-    "name": "DataNova",
-    "description": "DataNova Analytics Inc. provides advanced analytics for Excel to help businesses unlock actionable insights quickly with no coding required."
+    "name": "ECOS Consulting",
+    "description": "ECOS is a multidisciplinary consultancy providing an integrated approach to safety and environmental compliance within work environments."
   }
 };
 ---
@@ -72,29 +74,33 @@ const schema: WithContext<Thing> = {
 <BaseLayout seo={seo} schema={schema}>
   <section class="mx-auto max-w-[85rem] px-4 pb-12 pt-48 sm:px-6 lg:px-8">
     <div class="max-w-7xl">
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h1
-          class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
-        >
+      <div class="mx-auto max-w-3xl lg:mx-0">
+        <p class="text-base/7 font-medium text-teal-600">{aboutData.tagline}</p>
+        <h1 class="text-balance text-4xl text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
           {aboutData.title}
         </h1>
-        <p
-          class="mt-8 text-pretty text-lg font-medium text-slate-700 sm:text-xl/8"
-        >
+        <p class="mt-8 text-pretty text font-regular text-slate-700">
           {aboutData.description}
+        </p>
+        <p class="mt-6 text-pretty text-lg font-regular text-slate-700 sm:text-xl/8">
+          {aboutData.founding}
+        </p>
+        <p class="mt-6 text-pretty text font-regular text-slate-700">
+          {aboutData.mission}
+        </p>
+        <p class="mt-6 text-pretty text-lg font-medium text-teal-600 sm:text-xl/8">
+          {aboutData.cta}
         </p>
       </div>
 
       {/* Statistics Section */}
-      <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-        <dl
-          class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
-        >
+      <div class="mx-auto mt-12 max-w-2xl lg:mx-0 lg:max-w-none">
+        <dl class="mt-8 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {
             aboutData.statistics.map((stat) => (
-              <div class="flex flex-col-reverse gap-1">
-                <dt class="text-base/7 text-slate-700">{stat.label}</dt>
-                <dd class="text-4xl font-semibold tracking-tight text-slate-800">
+              <div class="rounded-xl bg-teal-50 p-8 shadow-sm">
+                <dt class="text-base text-slate-600">{stat.label}</dt>
+                <dd class="mt-4 text-4xl font-semibold tracking-tight text-teal-700">
                   {stat.value}
                 </dd>
               </div>
@@ -105,39 +111,84 @@ const schema: WithContext<Thing> = {
     </div>
   </section>
 
-  {/* Expertise Section */}
+  {/* Values Section */}
   <section class="mx-auto max-w-[85rem] px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-    <div
-      class="group relative isolate overflow-hidden rounded-3xl bg-teal-200 p-5 sm:p-11"
-    >
-      <div
-        class="group pointer-events-none absolute inset-0 -top-[10%] h-[120%] w-full rounded-xl bg-linear-to-r/oklch from-teal-200 to-off-white opacity-0 transition duration-1000 group-hover:opacity-100"
-      >
-      </div>
-      <div class="svgBlock mx-auto max-w-7xl">
-        <h2
-          class="relative text-balance pl-4 text-2xl font-semibold text-slate-800 md:text-3xl md:leading-tight"
-        >
-          {expertiseData.title}
+    <div class="group relative isolate overflow-hidden rounded-3xl bg-teal-200 p-5 sm:p-11">
+      <div class="mx-auto max-w-7xl">
+        <h2 class="text-center text-3xl font-semibold text-slate-800 md:text-4xl">
+          {valuesData.title}
         </h2>
-        <dl
-          class="relative mt-10 grid max-w-xl grid-cols-1 items-start text-base/7 text-slate-600 sm:max-w-none lg:grid-flow-row-dense lg:auto-rows-fr lg:grid-cols-3"
-        >
-          {
-            expertiseData.expertise.map((item, index) => (
-              <div
-                class={`px-5 py-5 sm:px-10 lg:py-0 ${index === 1 ? "h-full border-y border-dashed border-slate-400 lg:border-x lg:border-y-0" : ""}`}
-              >
-                <dt class="text-balance text-lg font-semibold text-slate-600">
-                  {item.title}
-                </dt>
-                <dd class="mt-2 text-pretty text-slate-500">
-                  {item.description}
-                </dd>
-              </div>
-            ))
-          }
-        </dl>
+        <p class="mt-2 text-center text-lg text-slate-600">
+          {valuesData.subtitle}
+        </p>
+        
+        <div class="mt-16 grid gap-16 lg:grid-cols-2">
+          <div class="relative">
+            <h3 class="text-balance text-2xl font-semibold text-slate-800">
+              {valuesData.vision.title}
+            </h3>
+            <ul class="mt-6 space-y-4">
+              {valuesData.vision.points.map((point) => (
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-teal-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-slate-600">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="relative">
+            <h3 class="text-balance text-2xl font-semibold text-slate-800">
+              {valuesData.mission.title}
+            </h3>
+            <ul class="mt-6 space-y-4">
+              {valuesData.mission.points.map((point) => (
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-teal-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-slate-600">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Certifications Section */}
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
+    <div class="max-w-7xl">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-balance text-3xl font-semibold text-slate-800 md:text-4xl">
+          Professional Certifications
+        </h2>
+        <p class="mt-4 text-pretty text-lg text-slate-700">
+          Our team holds key industry certifications ensuring the highest standards of professional service
+        </p>
+      </div>
+      
+      <div class="mx-auto mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div class="flex flex-col items-center">
+          <img src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?q=80&w=200&auto=format&fit=crop" alt="SACPCMP Certification" class="h-24 w-auto rounded-lg shadow-md" />
+          <h3 class="mt-4 text-lg font-medium text-slate-800">SACPCMP</h3>
+          <p class="mt-2 text-center text-slate-600">South African Council for Project and Construction Management Professions</p>
+        </div>
+        
+        <div class="flex flex-col items-center">
+          <img src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?q=80&w=200&auto=format&fit=crop" alt="EAPASA Certification" class="h-24 w-auto rounded-lg shadow-md" />
+          <h3 class="mt-4 text-lg font-medium text-slate-800">EAPASA</h3>
+          <p class="mt-2 text-center text-slate-600">Environmental Assessment Practitioners Association of South Africa</p>
+        </div>
+        
+        <div class="flex flex-col items-center">
+          <img src="https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?q=80&w=200&auto=format&fit=crop" alt="SACNASP Certification" class="h-24 w-auto rounded-lg shadow-md" />
+          <h3 class="mt-4 text-lg font-medium text-slate-800">SACNASP</h3>
+          <p class="mt-2 text-center text-slate-600">South African Council for Natural Scientific Professions</p>
+        </div>
       </div>
     </div>
   </section>

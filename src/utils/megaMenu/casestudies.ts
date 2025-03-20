@@ -1,42 +1,57 @@
-export const supportMenu = [
+// src/utils/megaMenu/casestudies.js
+
+export const caseStudiesMenu = [
   {
-    sectionTitle: "Documentation",
+    sectionTitle: "Project Categories",
     items: [
       {
-        icon: "articles",
-        title: "Articles",
-        description: "Learn from our collection of insightful articles.",
-        href: "/support/articles",
-      },
-      {
-        icon: "documentChartBar",
-        title: "Sample Spreadsheets",
-        description: "Download sample spreadsheets to practice with.",
-        href: "/support/sample-spreadsheets",
+        icon: "portfolio",
+        title: "Construction Safety",
+        href: "/case-studies/construction-safety",
       },
       {
         icon: "blankDocument",
-        title: "Whitepapers",
-        description: "Access detailed reports on advanced analytics techniques.",
-        href: "/support/whitepapers",
+        title: "Environmental Assessments",
+        href: "/case-studies/environmental-assessments",
       },
       {
-        icon: "documentMagnifyingGlass",
-        title: "Reference",
-        description: "Find technical documentation and reference materials.",
-        href: "/support/reference",
+        icon: "cog",
+        title: "Technical Plant Safety",
+        href: "/case-studies/technical-plant-safety",
+      },
+      {
+        icon: "lightbulb",
+        title: "Renewable Energy",
+        href: "/case-studies/renewable-energy",
       },
     ],
   },
   {
-    sectionTitle: "Knowledge Base",
+    sectionTitle: "Featured Projects",
     items: [
       {
-        icon: "info",
-        title: "Search the Knowledge Base",
-        description: "Search for answers to your questions in our Knowledge Base.",
-        href: "/support/knowledge-base",
+        icon: "checkCircle",
+        title: "Boland College Campus Safety",
+        href: "/case-studies/boland-college",
+      },
+      {
+        icon: "world",
+        title: "Antilles Rehabilitation Works",
+        href: "/case-studies/antilles-rehabilitation",
+      },
+      {
+        icon: "chartPie",
+        title: "Renewable Energy Due Diligence",
+        href: "/case-studies/renewable-energy-assessment",
+      },
+      {
+        icon: "presentationChart",
+        title: "Tygerberg Hospital Project",
+        href: "/case-studies/tygerberg-hospital",
       },
     ],
   },
 ];
+
+// Legacy support for older code - Don't remove
+export const supportMenu = caseStudiesMenu;

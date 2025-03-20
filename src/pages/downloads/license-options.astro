@@ -2,6 +2,13 @@
 import BaseLayout from "@layout/BaseLayout.astro";
 import Button from "@ui/Button.astro";
 import Icon from "@ui/icons/Icon.astro";
+import { Image } from "astro:assets";
+
+// Import your images
+import datanovaImage from "@images/datanova.webp";
+import graphImage from "@images/graph.webp";
+// If you have this image:
+// import safetyImage from "@images/safety-services.webp";
 
 // Info Section for Additional Services
 const servicesSection = {
@@ -147,6 +154,68 @@ const servicesSection = {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Visual Section before Additional Services */}
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-3xl bg-teal-100/50">
+      <div class="absolute inset-0 bg-teal-700 opacity-5 bg-[radial-gradient(#075252_1px,transparent_1px)]" style="background-size: 20px 20px;"></div>
+      
+      <div class="relative grid gap-8 p-8 md:grid-cols-2 md:p-12">
+        <div class="flex flex-col justify-center">
+          <h2 class="text-balance text-3xl font-semibold text-slate-800 md:text-4xl md:leading-tight">
+            Our Commitment to Excellence
+          </h2>
+          <p class="mt-4 text-pretty text-lg/7 text-slate-700">
+            At ECOS Consulting, we believe that compliance and productivity can go hand in hand. Our integrated approach ensures that your business meets all regulatory requirements while maintaining operational efficiency.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <div class="flex items-center gap-2">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-200/70">
+                <Icon name="check" class="size-6 text-teal-700" />
+              </div>
+              <span class="text-lg font-medium text-slate-700">Professional Expertise</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-200/70">
+                <Icon name="check" class="size-6 text-teal-700" />
+              </div>
+              <span class="text-lg font-medium text-slate-700">Practical Solutions</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-200/70">
+                <Icon name="check" class="size-6 text-teal-700" />
+              </div>
+              <span class="text-lg font-medium text-slate-700">Integrated Approach</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative flex items-center justify-center overflow-hidden">
+          <div class="relative h-80 w-full overflow-hidden rounded-xl shadow-xl md:h-96">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="absolute -left-20 -top-20 z-0 h-64 w-64 text-teal-300/40">
+              <path fill="currentColor" d="M37.5,-50.2C48.3,-39.8,56.7,-28.3,63.1,-14.2C69.5,-0.2,73.9,16.3,68.8,29.1C63.7,42,49.1,51.1,34.4,56.6C19.7,62.2,4.9,64.1,-11.3,62.9C-27.4,61.7,-44.9,57.4,-55.2,46.4C-65.5,35.4,-68.7,17.7,-66.3,1.4C-64,-14.9,-56.1,-29.8,-44.9,-40C-33.8,-50.2,-19.3,-55.8,-4.8,-50.9C9.7,-46.1,26.8,-30.7,37.5,-50.2Z" transform="translate(100 100)" />
+            </svg>
+            
+            <div class="relative z-10 grid h-full w-full grid-cols-2 gap-4 p-8">
+              <Image 
+                src={datanovaImage} 
+                alt="Environmental services visualization" 
+                class="h-full w-full rounded-lg object-cover shadow-lg"
+              />
+              
+              <Image 
+                src={graphImage} 
+                alt="Safety services visualization" 
+                class="h-full w-full rounded-lg object-cover shadow-lg"
+              /> 
+              
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 ---
 import Icon from "@ui/icons/Icon.astro";
-import { downloadsMenu } from "@/utils/megaMenu/downloads";
+import { servicesMenu } from "@/utils/megaMenu/services";
 
 const sectionDescription =
   "Explore our range of services tailored to your needs";
@@ -24,43 +24,37 @@ const currentPath = Astro.url.pathname;
   </button>
 
   <div
-    class="hs-dropdown-menu relative start-0 top-full z-10 mt-2 hidden w-full min-w-60 max-w-(--breakpoint-md) opacity-0 transition-[opacity,margin] duration-150 before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 xl:left-1/2 xl:-translate-x-1/2 xl:duration-300"
+    class="hs-dropdown-menu relative start-0 top-full z-10 mt-2 hidden w-full opacity-0 transition-[opacity,margin] duration-150 before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="mega-menu-services"
   >
     <div
-      class="from-teal-100 via-transparent to-white px-4 py-2 lg:mx-8 xl:mx-6 xl:rounded-lg xl:bg-white xl:bg-linear-to-t/oklch xl:px-16 xl:py-10 xl:shadow-lg xl:ring-1 xl:ring-teal-950/5"
+      class="from-teal-100 via-transparent to-white px-4 py-2 xl:mx-auto xl:w-auto xl:max-w-xs xl:rounded-lg xl:bg-white xl:bg-linear-to-t/oklch xl:px-6 xl:py-6 xl:shadow-lg xl:ring-1 xl:ring-teal-950/5"
     >
-      <p class="text-sm text-slate-600">
+      <p class="text-sm text-slate-600 mb-3">
         {sectionDescription}
       </p>
-      <hr class="mb-5 border border-teal-300" />
+      <hr class="mb-5 border-t border-slate-200" />
 
-      <div class="gap-4 py-1 md:grid md:grid-cols-2 md:p-2">
-        {
-          downloadsMenu.map((section) => (
-            <div class="flex flex-col">
-              <p class="text-sm text-slate-600">{section.sectionTitle}</p>
-
+      <div class="flex flex-col">
+        {servicesMenu.map((section) => (
+          <div class="mb-5">
+            <p class="text-base font-medium text-slate-700 mb-2">{section.sectionTitle}</p>
+            
+            <div class="flex flex-col space-y-1">
               {section.items.map((item) => (
                 <a
-                  class="flex gap-x-4 rounded-lg p-3 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden"
+                  class={`flex items-center gap-x-3 rounded-lg p-2 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden group ${currentPath === item.href ? "bg-slate-50" : ""}`}
                   href={item.href}
                 >
-                  <Icon name={item.icon} class="mt-1 size-5 shrink-0 text-slate-800" />
-
-                  <div class="grow">
-                    <p class="text-sm font-medium text-slate-800">
-                      {item.title}
-                    </p>
-                    <p class="text-sm text-slate-500">{item.description}</p>
-                  </div>
+                  <Icon name={item.icon || "check"} class="size-5 flex-shrink-0 text-teal-600 group-hover:text-teal-700" />
+                  <span class="text-sm font-medium text-slate-800">{item.title}</span>
                 </a>
               ))}
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
   </div>

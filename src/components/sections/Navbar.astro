@@ -1,8 +1,5 @@
 ---
-import Services from "@megaMenu/Services.astro";
-import CaseStudies from "@megaMenu/CaseStudies.astro";
 import Button from "@ui/Button.astro";
-import { navigationLinks } from "@utils/navigation";
 import { Image } from "astro:assets";
 import logoLight from "../../assets/images/ecos-logo-light.png";
 import logoDark from "../../assets/images/ecos-logo-dark.png";
@@ -92,31 +89,85 @@ const primaryCTA = { text: "Contact", href: "/contact" };
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 lg:ml-12 lg:block 2xl:ml-20"
       aria-labelledby="hs-header-base-collapse"
     >
-      <div
-        class="max-h-[75vh] overflow-hidden overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar]:w-2"
-      >
-        <div
-          class="flex flex-col gap-0.5 py-2 lg:flex-row lg:items-center lg:gap-2 lg:py-0"
-        >
+      <div class="max-h-[75vh] overflow-hidden overflow-y-auto">
+        <div class="flex flex-col gap-0.5 py-2 lg:flex-row lg:items-center lg:gap-2 lg:py-0">
           <div class="grow">
-            <div
-              class="flex flex-col gap-0.5 lg:flex-row lg:items-center lg:justify-center lg:gap-3"
-            >
+            <div class="flex flex-col gap-0.5 lg:flex-row lg:items-center lg:justify-center lg:gap-6">
+              <!-- Home Link -->
               <a
                 href="/"
-                class="nav-link flex items-center rounded-lg p-2 font-medium hover:bg-white/10 focus:bg-white/10 focus:outline-hidden text-white"
+                class="nav-link flex items-center p-2 font-medium text-white transition-colors duration-200 hover:text-teal-300"
                 aria-current={currentPath === "/" ? "page" : undefined}
               >
                 Home
               </a>
-        
-              <Services />
-        
-              <CaseStudies />
-        
+              
+              <!-- Services Dropdown -->
+              <div class="hs-dropdown relative inline-flex">
+                <button
+                  id="services-dropdown"
+                  type="button"
+                  class="nav-link flex items-center p-2 font-medium text-white transition-colors duration-200 hover:text-teal-300"
+                  aria-expanded="false"
+                  aria-controls="services-menu"
+                >
+                  Services
+                  <svg class="ml-1 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+                <div
+                  id="services-menu"
+                  class="hs-dropdown-menu duration mt-2 hidden min-w-[15rem] rounded-lg bg-white p-2 shadow-md transition-[opacity,margin] before:absolute before:-top-5 before:left-0 before:h-5 before:w-full"
+                  aria-labelledby="services-dropdown"
+                >
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/services/service-1">
+                    SHE Management
+                  </a>
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/services/service-2">
+                    Facilities Management
+                  </a>
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/services/service-3">
+                    Environmental Services
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Case Studies Dropdown -->
+              <div class="hs-dropdown relative inline-flex">
+                <button
+                  id="case-studies-dropdown"
+                  type="button"
+                  class="nav-link flex items-center p-2 font-medium text-white transition-colors duration-200 hover:text-teal-300"
+                  aria-expanded="false"
+                  aria-controls="case-studies-menu"
+                >
+                  Case Studies
+                  <svg class="ml-1 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+                <div
+                  id="case-studies-menu"
+                  class="hs-dropdown-menu duration mt-2 hidden min-w-[15rem] rounded-lg bg-white p-2 shadow-md transition-[opacity,margin] before:absolute before:-top-5 before:left-0 before:h-5 before:w-full"
+                  aria-labelledby="case-studies-dropdown"
+                >
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/case-studies/study-1">
+                    Manufacturing Industry
+                  </a>
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/case-studies/study-2">
+                    Construction Projects
+                  </a>
+                  <a class="flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm text-slate-800 hover:bg-slate-100" href="/case-studies/study-3">
+                    Healthcare Facilities
+                  </a>
+                </div>
+              </div>
+              
+              <!-- About Link -->
               <a
                 href="/about"
-                class="nav-link flex items-center rounded-lg p-2 font-medium hover:bg-white/10 focus:bg-white/10 focus:outline-hidden text-white"
+                class="nav-link flex items-center p-2 font-medium text-white transition-colors duration-200 hover:text-teal-300"
                 aria-current={currentPath === "/about" ? "page" : undefined}
               >
                 About
@@ -124,15 +175,12 @@ const primaryCTA = { text: "Contact", href: "/contact" };
             </div>
           </div>
     
-          <div
-            class="mt-5 flex flex-wrap items-center gap-x-1.5 lg:ml-6 lg:mt-0"
-          >
+          <div class="mt-5 flex flex-wrap items-center gap-x-1.5 lg:ml-6 lg:mt-0">
             <Button
               href={primaryCTA.href}
               variant="primary"
-              className="inline-flex text-nowrap border-none py-2! bg-teal-700 hover:bg-teal-700/80"
-              >{primaryCTA.text}</Button
-            >
+              className="inline-flex text-nowrap border-none py-2! bg-teal-700 hover:bg-teal-600"
+            >{primaryCTA.text}</Button>
           </div>
         </div>
       </div>
@@ -152,6 +200,31 @@ const primaryCTA = { text: "Contact", href: "/contact" };
     const logoLight = document.getElementById('logo-light');
     const logoDark = document.getElementById('logo-dark');
     const navLinks = document.querySelectorAll('.nav-link');
+    const html = document.documentElement;
+    
+    // Track if any dropdown is open
+    let dropdownOpen = false;
+    
+    // Monitor dropdowns
+    document.addEventListener('click', (e) => {
+      // Check if clicked element is a dropdown toggle
+      const isDropdownToggle = e.target.closest('[aria-controls]');
+      
+      if (isDropdownToggle) {
+        // Toggle dropdown state after a small delay to allow for animation
+        setTimeout(() => {
+          // Check if any dropdown is now open
+          dropdownOpen = document.querySelector('[aria-expanded="true"]') !== null;
+          
+          // Disable scroll snap when dropdown is open
+          if (dropdownOpen) {
+            html.style.scrollSnapType = 'none';
+          } else {
+            html.style.scrollSnapType = 'y proximity';
+          }
+        }, 50);
+      }
+    });
     
     const handleScroll = () => {
       // Check if header element exists
@@ -171,8 +244,8 @@ const primaryCTA = { text: "Contact", href: "/contact" };
         
         // Change navigation text colors to dark
         navLinks.forEach(link => {
-          link.classList.remove('text-white', 'hover:bg-white/10', 'focus:bg-white/10');
-          link.classList.add('text-slate-800', 'hover:bg-slate-100/70', 'focus:bg-slate-100/70');
+          link.classList.remove('text-white', 'hover:text-teal-300');
+          link.classList.add('text-slate-800', 'hover:text-teal-700');
         });
       } else {
         // When at the top, return to transparent and light theme
@@ -187,8 +260,8 @@ const primaryCTA = { text: "Contact", href: "/contact" };
         
         // Change navigation text colors to light
         navLinks.forEach(link => {
-          link.classList.add('text-white', 'hover:bg-white/10', 'focus:bg-white/10');
-          link.classList.remove('text-slate-800', 'hover:bg-slate-100/70', 'focus:bg-slate-100/70');
+          link.classList.add('text-white', 'hover:text-teal-300');
+          link.classList.remove('text-slate-800', 'hover:text-teal-700');
         });
       }
     };
@@ -198,6 +271,11 @@ const primaryCTA = { text: "Contact", href: "/contact" };
     
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
+    
+    // Clean up event listeners on page navigation
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   });
 </script>
 

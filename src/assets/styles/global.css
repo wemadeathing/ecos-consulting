@@ -83,6 +83,32 @@
   @apply relative z-10 flex h-full flex-col border-dashed border-slate-300 p-4 before:absolute before:inset-0 before:-z-1 before:bg-linear-to-b/oklch before:via-80% before:opacity-0 hover:before:from-transparent hover:before:via-transparent hover:before:to-teal-500/20 hover:before:opacity-100 focus:outline-hidden focus:before:from-transparent focus:before:via-transparent focus:before:to-teal-500/20 focus:before:opacity-100 md:p-6;
 }
 
-@utility button {
-  @apply rounded-full;
+/* Add magnetic pull to top effect */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity; /* Using proximity instead of mandatory */
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+/* First section gets strong snap alignment */
+section:first-of-type {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh; /* Ensures section fills viewport */
+}
+
+/* Other sections get weaker snap */
+section:not(:first-of-type) {
+  scroll-snap-align: start;
+  min-height: 50vh; /* Shorter minimum height */
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+

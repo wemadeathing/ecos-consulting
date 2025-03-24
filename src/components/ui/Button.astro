@@ -38,11 +38,11 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
 
 {href ? (
   <a id={id} href={href} rel={rel ? rel : undefined} target={target ? target : undefined}
-     class={`px-6 py-2.5 text-center rounded-lg font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
+     class={`px-6 py-2.5 text-center rounded-full font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
     <slot />
   </a>
 ) : (
-  <button id={id} type={type || "button"} class={`px-6 py-2.5 text-center rounded-lg font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
+  <button id={id} type={type || "button"} class={`px-6 py-2.5 text-center rounded-full font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
     <slot />
   </button>
 )}

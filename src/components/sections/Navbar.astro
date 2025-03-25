@@ -43,15 +43,14 @@ const primaryCTA = { text: "Contact", href: "/contact" };
 
       <button
         type="button"
-        class="hs-collapse-toggle relative flex size-9 items-center justify-center rounded-lg border border-slate-200/30 text-[12px] font-medium text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden lg:hidden"
-        id="hs-header-base-collapse"
+        class="mobile-menu-toggle relative flex size-9 items-center justify-center rounded-lg border border-slate-200/30 text-[12px] font-medium text-white hover:bg-white/10 focus:bg-white/10 focus:outline-hidden lg:hidden z-[60]"
+        id="mobile-menu-toggle"
         aria-expanded="false"
-        aria-controls="hs-header-base"
+        aria-controls="mobile-menu"
         aria-label="Toggle navigation"
-        data-hs-collapse="#hs-header-base"
       >
         <svg
-          class="size-4 hs-collapse-open:hidden"
+          class="size-4 mobile-menu-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -67,23 +66,11 @@ const primaryCTA = { text: "Contact", href: "/contact" };
             y1="12"
             y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg
         >
-        <svg
-          class="hidden size-4 shrink-0 hs-collapse-open:block"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
-        >
         <span class="sr-only">Toggle navigation</span>
       </button>
     </div>
 
+    <!-- Desktop Menu -->
     <div
       id="hs-header-base"
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 lg:ml-12 lg:block 2xl:ml-20"
@@ -186,6 +173,40 @@ const primaryCTA = { text: "Contact", href: "/contact" };
       </div>
     </div>
   </nav>
+  
+  <!-- Mobile Menu (Fullscreen) -->
+  <div id="mobile-menu" class="hidden transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto">
+    <div class="flex justify-end p-6">
+      <button id="close-mobile-menu" class="text-white hover:text-teal-300" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-8">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="flex flex-col items-start p-8 text-white space-y-8">
+      <a href="/" class="text-2xl font-medium hover:text-teal-300 transition-colors">
+        Home
+      </a>
+      
+      <a href="#" class="text-2xl font-medium hover:text-teal-300 transition-colors">
+        Services
+      </a>
+      
+      <a href="#" class="text-2xl font-medium hover:text-teal-300 transition-colors">
+        Case Studies
+      </a>
+      
+      <a href="/about" class="text-2xl font-medium hover:text-teal-300 transition-colors">
+        About us
+      </a>
+      
+      <a href="/contact" class="mt-8 inline-flex items-center rounded-full bg-teal-700 px-6 py-3 text-lg font-medium text-white hover:bg-teal-600 transition-colors">
+        Contact Us
+      </a>
+    </div>
+  </div>
 </header>
 
 <script>
@@ -195,20 +216,61 @@ const primaryCTA = { text: "Contact", href: "/contact" };
       module.HSStaticMethods.autoInit();
     });
     
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const closeMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const html = document.documentElement;
+    
+    if (mobileMenuToggle && mobileMenu && closeMenuButton) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('translate-x-full');
+        mobileMenu.classList.toggle('translate-x-0');
+        
+        // Hide the hamburger menu button when mobile menu is open
+        if (mobileMenu.classList.contains('translate-x-0')) {
+          mobileMenuToggle.classList.add('invisible');
+          // Prevent body scroll when menu is open
+          html.style.overflow = 'hidden';
+        } else {
+          // Show the hamburger menu button when mobile menu is closed
+          setTimeout(() => {
+            mobileMenuToggle.classList.remove('invisible');
+          }, 300);
+          html.style.overflow = '';
+        }
+      });
+      
+      closeMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuToggle.classList.remove('invisible');
+          html.style.overflow = '';
+        }, 300);
+      });
+    }
+    
     // Handle scroll behavior for the header
     const header = document.getElementById('main-header');
     const logoLight = document.getElementById('logo-light');
     const logoDark = document.getElementById('logo-dark');
     const navLinks = document.querySelectorAll('.nav-link');
-    const html = document.documentElement;
     
     // Track if any dropdown is open
     let dropdownOpen = false;
     
     // Monitor dropdowns
     document.addEventListener('click', (e) => {
+      // Type assertion to tell TypeScript that e.target is an Element
+      const target = e.target as Element;
+      
       // Check if clicked element is a dropdown toggle
-      const isDropdownToggle = e.target.closest('[aria-controls]');
+      const isDropdownToggle = target.closest('[aria-controls]');
       
       if (isDropdownToggle) {
         // Toggle dropdown state after a small delay to allow for animation
@@ -247,6 +309,12 @@ const primaryCTA = { text: "Contact", href: "/contact" };
           link.classList.remove('text-white', 'hover:text-teal-300');
           link.classList.add('text-slate-800', 'hover:text-teal-700');
         });
+        
+        // Update mobile menu toggle color
+        if (mobileMenuToggle) {
+          mobileMenuToggle.classList.remove('text-white', 'border-slate-200/30');
+          mobileMenuToggle.classList.add('text-slate-800', 'border-slate-300');
+        }
       } else {
         // When at the top, return to transparent and light theme
         header.classList.remove('bg-white/70', 'backdrop-blur-md', 'shadow-md', 'border-slate-100');
@@ -263,6 +331,12 @@ const primaryCTA = { text: "Contact", href: "/contact" };
           link.classList.add('text-white', 'hover:text-teal-300');
           link.classList.remove('text-slate-800', 'hover:text-teal-700');
         });
+        
+        // Update mobile menu toggle color
+        if (mobileMenuToggle) {
+          mobileMenuToggle.classList.add('text-white', 'border-slate-200/30');
+          mobileMenuToggle.classList.remove('text-slate-800', 'border-slate-300');
+        }
       }
     };
     
@@ -275,6 +349,8 @@ const primaryCTA = { text: "Contact", href: "/contact" };
     // Clean up event listeners on page navigation
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (mobileMenuToggle) mobileMenuToggle.removeEventListener('click', () => {});
+      if (closeMenuButton) closeMenuButton.removeEventListener('click', () => {});
     };
   });
 </script>
@@ -284,5 +360,28 @@ const primaryCTA = { text: "Contact", href: "/contact" };
   .backdrop-blur-md {
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+  }
+  
+  /* Mobile menu animation */
+  #mobile-menu {
+    will-change: transform;
+    position: fixed !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+    background-color: #101B21 !important;
+  }
+  
+  /* Reset any potential browser defaults */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 </style>

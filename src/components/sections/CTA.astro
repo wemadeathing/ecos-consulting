@@ -3,7 +3,7 @@ import Button from "@ui/Button.astro";
 
 // Content for the section title and subtitle
 const title =
-  'Elevate Your Safety and Compliance Standards. <br /> Partner with <span class="font-medium text-teal-700">ECOS</span><span class="font-light text-slate-400"> Consulting</span>.';
+  'Elevate Your Safety and Compliance Standards. <br /> Partner with <span class="font-medium text-white">ECOS</span><span class="font-light text-white/90"> Consulting</span>.';
 const subTitle =
   "Contact us today to discover how our integrated approach to safety and environmental compliance can help your organization achieve regulatory excellence while enhancing productivity.";
 
@@ -14,19 +14,21 @@ const primaryCTA = { text: "Get in Touch", href: "/contact" };
 <section
   class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
 >
-  <div class="mx-auto mb-10 max-w-3xl text-center lg:mb-14">
-    <h2
-      class="text-balance text-4xl text-slate-800 sm:text-5xl"
-    >
-      <Fragment set:html={title} />
-    </h2>
-    <p class="text-lg\/8 mt-5 text-pretty text-slate-600">
-      {subTitle}
-    </p>
-    <Button
-      href={primaryCTA.href}
-      variant="primary"
-      className="mt-7 inline-flex border-none px-3.5!">{primaryCTA.text}</Button
-    >
+  <div class="mx-auto rounded-3xl bg-te-papa-green p-8 py-16 sm:p-12 sm:py-20 lg:p-16 lg:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2
+        class="text-balance text-4xl text-white sm:text-5xl"
+      >
+        <Fragment set:html={title} />
+      </h2>
+      <p class="text-lg\/8 mt-6 text-pretty text-white/90 max-w-2xl mx-auto">
+        {subTitle}
+      </p>
+      <Button
+        href={primaryCTA.href}
+        variant="primary"
+        className="mt-10 inline-flex border-none bg-slate-800 text-white hover:bg-slate-700 px-6 py-3 text-lg font-medium">{primaryCTA.text}</Button
+      >
+    </div>
   </div>
 </section>

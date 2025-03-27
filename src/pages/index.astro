@@ -5,6 +5,8 @@ import FeatureBento from "@sections/FeatureBento.astro";
 import FeatureAnimated from "@sections/FeatureAnimated.astro";
 import FeatureGrid from "@sections/FeatureGrid.astro";
 import CTA from "@sections/CTA.astro";
+import Carousel from "@/components/ui/carousel.astro";
+import Button from "astro-app/src/components/Button.astro";
 
 // Import the Image component
 import { Image } from "astro:assets";
@@ -13,6 +15,28 @@ import { Image } from "astro:assets";
 import environmentalImg from "../assets/images/environmental-services.jpg";
 import safetyImg from "../assets/images/safety-services.jpg";
 import complianceImg from "../assets/images/compliance-audits.jpg";
+
+// Sample testimonial data - you would ideally store this in a separate data file
+const testimonials = [
+  {
+    quote: "ECOS Consulting helped us implement safety protocols that not only met regulatory requirements but also improved overall workplace efficiency.",
+    author: "Sarah Johnson",
+    position: "HSE Manager, BuildTech Construction",
+    image: "/testimonials/sarah-johnson.jpg"
+  },
+  {
+    quote: "Their integrated approach to environmental compliance saved us both time and resources while ensuring we stayed ahead of industry standards.",
+    author: "Michael Chen",
+    position: "Operations Director, EcoManufacturing",
+    image: "/testimonials/michael-chen.jpg"
+  },
+  {
+    quote: "Working with ECOS Consulting transformed our approach to safety management. Their expertise was invaluable.",
+    author: "Rebecca Williams",
+    position: "Project Manager, Urban Development Corp",
+    image: "/testimonials/rebecca-williams.jpg"
+  }
+];
 ---
 
 <BaseLayout>
@@ -22,12 +46,11 @@ import complianceImg from "../assets/images/compliance-audits.jpg";
   <section class="py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       {/* Section header */}
-      <div class="text-center mb-16">
-        <p class="text-sm font-medium text-slate-700">Services</p>
-        <h2 class="mt-2 text-balance text-4xl font-medium text-slate-900 md:text-5xl md:leading-tight mx-auto max-w-4xl">
+      <div class="text-left mb-16">
+        <h2 class="mt-2 text-balance text-4xl font-medium text-slate-900 md:text-5xl md:leading-tight max-w-4xl">
           Comprehensive Solutions for Your Environmental Needs
         </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg text-slate-600">
+        <p class="mt-6 max-w-2xl text-pretty text-lg text-slate-600">
           At ECOS Consulting, we offer a range of services designed to ensure safety and compliance in various industries. Our expertise spans environmental assessments, safety management, and compliance audits.
         </p>
       </div>
@@ -36,41 +59,59 @@ import complianceImg from "../assets/images/compliance-audits.jpg";
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {/* Service 1 */}
         <div class="flex flex-col">
-          <div class="overflow-hidden rounded-lg mb-5">
+          <div class="overflow-hidden rounded-xl mb-5">
             <img 
               src={environmentalImg.src} 
               alt="Environmental Services" 
-              class="w-full h-auto object-cover"
+              class="w-full h-48 object-cover"
             />
           </div>
-          <h3 class="text-2xl font-medium text-slate-900">Environmental Services Tailored for Your Business</h3>
-          <p class="mt-3 text-slate-600">Our environmental services help you navigate compliance and sustainability challenges.</p>
+          <h3 class="text-lg font-medium text-slate-900">Environmental Services Tailored for Your Business</h3>
+          <p class="mt-1 text-slate-500">Our environmental services help you navigate compliance and sustainability challenges.</p>
+          <a href="/environmental-services" class="mt-2 inline-flex items-center text-teal-600 hover:text-teal-800">
+            Learn More
+            <svg class="ml-1 w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </a>
         </div>
         
         {/* Service 2 */}
         <div class="flex flex-col">
-          <div class="overflow-hidden rounded-lg mb-5">
+          <div class="overflow-hidden rounded-xl mb-5">
             <img 
               src={safetyImg.src} 
               alt="Safety Services" 
-              class="w-full h-auto object-cover"
+              class="w-full h-48 object-cover"
             />
           </div>
-          <h3 class="text-2xl font-medium text-slate-900">Safety Services to Protect Your Workforce</h3>
-          <p class="mt-3 text-slate-600">We provide comprehensive safety solutions to ensure a secure working environment.</p>
+          <h3 class="text-lg font-medium text-slate-900">Safety Services to Protect Your Workforce</h3>
+          <p class="mt-1 text-slate-500">We provide comprehensive safety solutions to ensure a secure working environment.</p>
+          <a href="/safety-services" class="mt-2 inline-flex items-center text-teal-600 hover:text-teal-800">
+            Learn More
+            <svg class="ml-1 w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </a>
         </div>
         
         {/* Service 3 */}
         <div class="flex flex-col">
-          <div class="overflow-hidden rounded-lg mb-5">
+          <div class="overflow-hidden rounded-xl mb-5">
             <img 
               src={complianceImg.src} 
               alt="Compliance Audits" 
-              class="w-full h-auto object-cover"
+              class="w-full h-48 object-cover"
             />
           </div>
-          <h3 class="text-2xl font-medium text-slate-900">Compliance Audits for Peace of Mind</h3>
-          <p class="mt-3 text-slate-600">Our compliance audits guarantee adherence to legal standards and regulations.</p>
+          <h3 class="text-lg font-medium text-slate-900">Compliance Audits for Peace of Mind</h3>
+          <p class="mt-1 text-slate-500">Our compliance audits guarantee adherence to legal standards and regulations.</p>
+          <a href="/compliance-audits" class="mt-2 inline-flex items-center text-teal-600 hover:text-teal-800">
+            Learn More
+            <svg class="ml-1 w-4 h-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -78,6 +119,43 @@ import complianceImg from "../assets/images/compliance-audits.jpg";
 
   <FeatureAnimated />
 
+  
+
+  <section class="bg-slate-50 py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">What Our Clients Say</h2>
+        <p class="mt-4 text-lg text-slate-600">Hear from organizations we've helped with safety and environmental compliance</p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        {testimonials.map((testimonial) => (
+          <div class="rounded-2xl bg-white p-8 shadow-sm">
+            <div class="flex h-full flex-col">
+              <div>
+                <svg class="h-8 w-8 text-teal-500" fill="currentColor" viewBox="0 0 32 32">
+                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                </svg>
+              </div>
+              <p class="mt-4 text-lg text-slate-700">{testimonial.quote}</p>
+              <div class="mt-6 flex items-center">
+                <div class="flex-shrink-0">
+                  <img class="h-12 w-12 rounded-full object-cover" src={testimonial.image} alt={testimonial.author} />
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-base font-medium text-slate-800">{testimonial.author}</h3>
+                  <p class="text-sm text-slate-500">{testimonial.position}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <Carousel />
+  
   <FeatureGrid />
 
   <CTA />

@@ -6,21 +6,61 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  /* https://tailwindcss.com/docs/colors#customizing-your-colors */
-  --color-*: initial;
+  /* Core colors */
   --color-transparent: transparent;
   --color-current: currentColor;
   --color-black: #000;
   --color-white: #fff;
   --color-off-white: #fefefe;
 
-  /* Brand Colors in OKLCH format */
-  --color-persian-green: oklch(69.7% 0.082 195.4); /* #00A79D */
-  --color-te-papa-green: oklch(25.5% 0.025 196.5); /* #1A3837 */
-  --color-birch: oklch(29.1% 0.038 71.8); /* #413727 */
-  --color-honeysuckle: oklch(95.2% 0.095 115.8); /* #E6FC77 */
-  --color-coral-reef: oklch(78.9% 0.027 83.2); /* #C9BCA6 */
+  /* Primary Color (Teal) - Simplified consistent range */
+  --color-primary-100: oklch(0.953 0.051 180.801);
+  /* Light background */
+  --color-primary-300: oklch(0.855 0.138 181.071);
+  /* Light accent */
+  --color-primary-500: oklch(0.704 0.14 182.503);
+  /* Main brand color */
+  --color-primary-700: oklch(0.511 0.096 186.391);
+  /* Dark accent */
+  --color-primary-900: oklch(0.386 0.063 188.416);
+  /* Darkest shade */
 
+  /* Secondary Color - Tailwind Emerald (adjusted to make 900 the main) */
+  --color-secondary-100: oklch(0.914 0.031 160.512);
+  /* Emerald-100 */
+  --color-secondary-300: oklch(0.808 0.067 160.132);
+  /* Emerald-300 */
+  --color-secondary-500: oklch(0.725 0.098 160.088);
+  /* Emerald-500 */
+  --color-secondary-700: oklch(0.603 0.095 160.852);
+  /* Emerald-700 */
+  --color-secondary-900: oklch(0.262 0.051 172.552);
+  /* Your existing 900 as main */
+
+  /* Tertiary Color (Lime) */
+  --color-tertiary-100: oklch(98% 0.04 124.321);
+  --color-tertiary-300: oklch(96% 0.08 124.321);
+  --color-tertiary-500: oklch(0.938 0.127 124.321);
+  --color-tertiary-700: oklch(87% 0.09 124.321);
+  --color-tertiary-900: oklch(70% 0.05 124.321);
+
+  /* Neutral Colors - Brown (now consistent) */
+  --color-brown-100: oklch(87% 0.008 71.8);
+  --color-brown-300: oklch(65% 0.02 71.8);
+  /* Added this missing 300 */
+  --color-brown-500: oklch(42% 0.034 71.8);
+  --color-brown-700: oklch(29.1% 0.038 71.8);
+  --color-brown-900: oklch(18% 0.025 71.8);
+
+  /* Surface Colors - Stone (now consistent) */
+  --color-stone-100: oklch(94% 0.006 83.2);
+  --color-stone-300: oklch(88% 0.015 83.2);
+  /* Added this missing 300 */
+  --color-stone-500: oklch(78.9% 0.027 83.2);
+  --color-stone-700: oklch(60% 0.023 83.2);
+  --color-stone-900: oklch(40% 0.015 83.2);
+
+  /* Slate Colors - Full grayscale spectrum (unchanged) */
   --color-slate-50: oklch(0.984 0.003 247.858);
   --color-slate-100: oklch(0.968 0.007 247.896);
   --color-slate-200: oklch(0.929 0.013 255.508);
@@ -33,20 +73,7 @@
   --color-slate-900: oklch(0.208 0.042 265.755);
   --color-slate-950: oklch(0.129 0.042 264.695);
 
-  /* Updated teal color palette based on #00A79D (Persian Green) */
-  --color-teal-50: oklch(97.5% 0.01 195.4);
-  --color-teal-100: oklch(95% 0.02 195.4);
-  --color-teal-200: oklch(92% 0.03 195.4);
-  --color-teal-300: oklch(87% 0.045 195.4);
-  --color-teal-400: oklch(80% 0.06 195.4);
-  --color-teal-500: oklch(75% 0.07 195.4);
-  --color-teal-600: oklch(72% 0.075 195.4);
-  --color-teal-700: oklch(69.7% 0.082 195.4); /* #00A79D */
-  --color-teal-800: oklch(60% 0.07 195.4);
-  --color-teal-900: oklch(50% 0.06 195.4);
-  --color-teal-950: oklch(33% 0.047 195.4);
-
-  /* https://tailwindcss.com/docs/font-family#customizing-your-theme */
+  /* Fonts */
   --font-dm-sans: "DM Sans", sans-serif;
   --font-work-sans: "Work Sans", sans-serif;
 }
@@ -60,6 +87,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -93,7 +121,8 @@
 /* Add magnetic pull to top effect */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity; /* Using proximity instead of mandatory */
+  scroll-snap-type: y proximity;
+  /* Using proximity instead of mandatory */
   overscroll-behavior-y: none;
   overflow-x: hidden;
   height: 100%;
@@ -105,13 +134,15 @@ html {
 section:first-of-type {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100vh; /* Ensures section fills viewport */
+  min-height: 100vh;
+  /* Ensures section fills viewport */
 }
 
 /* Other sections get weaker snap */
 section:not(:first-of-type) {
   scroll-snap-align: start;
-  min-height: 50vh; /* Shorter minimum height */
+  min-height: 50vh;
+  /* Shorter minimum height */
 }
 
 body {

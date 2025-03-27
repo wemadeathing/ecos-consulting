@@ -1,29 +1,46 @@
 ---
-const { type, href, rel, target,
-  variant, className, id } = Astro.props;
-
+// Define comprehensive props
 export interface Props {
-  type?: "button" | "submit" | "reset";
   href?: string;
-  rel?: string;
-  target?: "_self" | "_blank" | "_parent" | "_top";
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: 'primary' | 'secondary' | 'outline' | 'transparent';
   className?: string;
   id?: string;
+  type?: 'button' | 'submit' | 'reset';
+  [key: string]: any; // Allow any other props
 }
 
-/**
- * Variants: Defines predefined styling options for the 'variant' prop.
- * - primary: A solid teal button with white text and hover/active effects.
- * - secondary: A bordered button with teal and slate accents with hover effects.
- * - tertiary: A soft teal background with hover effects.
- */
+const { 
+  href, 
+  variant = "primary", 
+  className = "", 
+  id,
+  type = "button",
+  ...rest 
+} = Astro.props as Props;
 
+// Determine if this is a button or a link
+const isLink = !!href;
+const Element = isLink ? "a" : "button";
+
+// Define variant styles
 const variants = {
-  primary: "bg-teal-700 hover:bg-teal-800/80 focus:bg-teal-800/80 border border-transparent text-white",
-  secondary: "hover:border-teal-700 hover:bg-teal-700 border-teal-800 border-2 text-slate-800 hover:text-white",
-  tertiary: "bg-teal-50 hover:bg-teal-50/80",
+  primary: "bg-primary-500 text-white hover:bg-primary-700 focus:ring-2 focus:ring-teal-300",
+  secondary: "bg-secondary-900 text-white hover:bg-secondary-700 focus:ring-2 focus:ring-white",
+  tertiary: "bg-tertiary-500 text-slate-900 hover:bg-tertiary-700 focus:ring-2 focus:ring-lime-300",
+  outline: "border secondary-900 text-secondary-900 hover:bg-secondary-900 focus:ring-2 focus:ring-white",
+  transparent: "bg-transparent text-white hover:bg-white/10 focus:bg-white/10 focus:outline-none"
 };
+
+// Get the appropriate variant style
+const variantClass = variants[variant] || variants.primary;
+
+// Determine base class based on usage
+let baseClass = "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-colors";
+
+// Override base class if className contains specific styling needs
+if (className.includes("mobile-menu-toggle")) {
+  baseClass = "flex items-center justify-center transition-colors focus:outline-none";
+}
 ---
 
 {/*
@@ -36,13 +53,22 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
  Both types of elements share a similar structure and styling logic, with customization through the `variant`, `className`, and `id` props.
 */}
 
-{href ? (
-  <a id={id} href={href} rel={rel ? rel : undefined} target={target ? target : undefined}
-     class={`px-6 py-2.5 text-center rounded-full font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
+{isLink ? (
+  <a 
+    href={href} 
+    class:list={[baseClass, variantClass, className]}
+    id={id}
+    {...rest}
+  >
     <slot />
   </a>
 ) : (
-  <button id={id} type={type || "button"} class={`px-6 py-2.5 text-center rounded-full font-medium duration-300 focus:outline-hidden transition-colors ${variants[variant ?? "primary"]} ${className || ""}`}>
+  <button 
+    type={type} 
+    class:list={[baseClass, variantClass, className]}
+    id={id}
+    {...rest}
+  >
     <slot />
   </button>
 )}

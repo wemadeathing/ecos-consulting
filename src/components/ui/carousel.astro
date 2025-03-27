@@ -39,23 +39,27 @@ const caseStudies = [
 ];
 ---
 
-<section class="py-16 sm:py-24 bg-te-papa-green">
-  <div class="mx-auto max-w-8xl px-6 sm:px-8 lg:px-10">
-    <div class="bg-honeysuckle rounded-3xl p-8 md:p-8 flex flex-col md:flex-row items-center gap-10">
-      <div class="md:w-1/2">
-        <h2 class="text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+<section class="py-16 sm:py-24 bg-primary-950">
+  <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+    <div class="bg-tertiary-500 rounded-3xl p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center gap-8 md:gap-10">
+      <div class="w-full md:w-1/2">
+        <h2 class="text-balance text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
           {caseStudies[0].title}
         </h2>
-        <p class="mt-4 text-lg text-slate-700">
+        <p class="mt-4 text-pretty text-lg text-slate-700">
           {caseStudies[0].description}
         </p>
         <div class="mt-8">
-          <Button href="/case-studies" className="px-8 py-3 bg-te-papa-green text-white rounded-full">
+          <Button 
+            href="/case-studies" 
+            variant="secondary"
+            size="lg"
+          >
             View All Case Studies
           </Button>
         </div>
       </div>
-      <div class="md:w-1/2 overflow-hidden rounded-2xl">
+      <div class="w-full md:w-1/2 overflow-hidden rounded-2xl">
         <Image 
           src={environmentalImg} 
           alt="Environmental Services" 

@@ -24,6 +24,7 @@
   /* Dark accent */
   --color-primary-900: oklch(0.386 0.063 188.416);
   /* Darkest shade */
+  --color-primary-950: oklch(0.277 0.046 192.524);
 
   /* Secondary Color - Tailwind Emerald (adjusted to make 900 the main) */
   --color-secondary-100: oklch(0.914 0.031 160.512);

@@ -2,7 +2,8 @@
 // Define comprehensive props
 export interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'transparent';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'transparent';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   id?: string;
   type?: 'button' | 'submit' | 'reset';
@@ -11,7 +12,8 @@ export interface Props {
 
 const { 
   href, 
-  variant = "primary", 
+  variant = "primary",
+  size = "md", 
   className = "", 
   id,
   type = "button",
@@ -25,17 +27,29 @@ const Element = isLink ? "a" : "button";
 // Define variant styles
 const variants = {
   primary: "bg-primary-500 text-white hover:bg-primary-700 focus:ring-2 focus:ring-teal-300",
-  secondary: "bg-secondary-900 text-white hover:bg-secondary-700 focus:ring-2 focus:ring-white",
+  secondary: "bg-primary-950 text-white hover:bg-primary-700 focus:ring-2 focus:ring-white",
   tertiary: "bg-tertiary-500 text-slate-900 hover:bg-tertiary-700 focus:ring-2 focus:ring-lime-300",
   outline: "border secondary-900 text-secondary-900 hover:bg-secondary-900 focus:ring-2 focus:ring-white",
   transparent: "bg-transparent text-white hover:bg-white/10 focus:bg-white/10 focus:outline-none"
 };
 
+// Define size styles
+const sizes = {
+  xs: "px-2 py-1 text-xs",
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-4 py-2 text-sm",
+  lg: "px-5 py-2.5 text-base",
+  xl: "px-6 py-3 text-lg"
+};
+
 // Get the appropriate variant style
 const variantClass = variants[variant] || variants.primary;
 
+// Get the appropriate size style
+const sizeClass = sizes[size] || sizes.md;
+
 // Determine base class based on usage
-let baseClass = "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-colors";
+let baseClass = "inline-flex items-center justify-center rounded-full font-medium transition-colors";
 
 // Override base class if className contains specific styling needs
 if (className.includes("mobile-menu-toggle")) {
@@ -56,7 +70,7 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
 {isLink ? (
   <a 
     href={href} 
-    class:list={[baseClass, variantClass, className]}
+    class:list={[baseClass, variantClass, sizeClass, className]}
     id={id}
     {...rest}
   >
@@ -65,7 +79,7 @@ This component dynamically renders either a `<button>` element or an `<a>` (link
 ) : (
   <button 
     type={type} 
-    class:list={[baseClass, variantClass, className]}
+    class:list={[baseClass, variantClass, sizeClass, className]}
     id={id}
     {...rest}
   >

@@ -14,7 +14,7 @@ const primaryCTA = { text: "Get in Touch", href: "/contact" };
 <section
   class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
 >
-  <div class="mx-auto rounded-3xl bg-te-papa-green p-8 py-16 sm:p-12 sm:py-20 lg:p-16 lg:py-24">
+  <div class="mx-auto rounded-3xl bg-primary-950 p-8 py-16 sm:p-12 sm:py-20 lg:p-16 lg:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <h2
         class="text-balance text-4xl text-white sm:text-5xl"
@@ -24,11 +24,15 @@ const primaryCTA = { text: "Get in Touch", href: "/contact" };
       <p class="text-lg\/8 mt-6 text-pretty text-white/90 max-w-2xl mx-auto">
         {subTitle}
       </p>
-      <Button
-        href={primaryCTA.href}
-        variant="primary"
-        className="mt-10 inline-flex border-none bg-slate-800 text-white hover:bg-slate-700 px-6 py-3 text-lg font-medium">{primaryCTA.text}</Button
-      >
+      <div class="mt-8">
+        <Button 
+          href="/case-studies" 
+          variant="primary"
+          size="xl"
+        >
+          View All Case Studies
+        </Button>
+      </div>
     </div>
   </div>
 </section>
